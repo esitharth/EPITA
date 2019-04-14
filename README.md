@@ -1,2 +1,4 @@
 # EPITA
-Projects from college
+Projects from college 
+Contains files from the PyWeek Codeathon Challenges
+
