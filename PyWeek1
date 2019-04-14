@@ -1,0 +1,46 @@
+import networkx as nx
+import matplotlib.pyplot as plt
+import numpy as np
+
+#Max Degree Method
+
+Nodes = 10
+
+G = nx.gnp_random_graph(Nodes,0.8) #initial state vector
+
+nx.draw(G, with_labels=True, font_weight='bold')
+#print(nx.adjacency_matrix(G))
+
+l = nx.degree(G) #degree, vertices
+
+print(l) 
+m = l[0]
+for i in range(len(l)):
+    if (m < l[i]):
+        m = l[i]
+print(m) #max degree (maxi∈V di)
+
+c = 1/m #c 
+print(c) 
+W = np.zeros((Nodes,Nodes))
+
+for i in range(len(l)):
+    W[i][i] = 1 - c*l[i] # W(i, i) = 1 − cdi
+
+print(W) #max_degree_matrix
+
+
+#average consensus
+avg_max_degree=0
+for i in range(Nodes):
+    for j in range(Nodes):
+        avg_max_degree+=W[i][j]*l[i]
+    
+        
+
+print("Average Max Degree:", avg_max_degree)
+
+''''import numpy as np
+print(nx.adjacency_matrix(G).todense())
+print(np.mean(np.sum(nx.adjacency_matrix(G).todense(),axis=0))) #true definition
+'''''
